@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM hub.c.163.com/public/ubuntu:16.04-tools
 MAINTAINER Doro Wu <fcwu.tw@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
