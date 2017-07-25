@@ -23,7 +23,7 @@ RUN apt-get update \
     && add-apt-repository ppa:fcwu-tw/ppa \
     && dpkg --add-architecture i386 \
     && curl -SL https://dl.winehq.org/wine-builds/Release.key | apt-key add - \
-    && apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
+    && apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/ \
     && apt-get update \
     && apt-get install -y --no-install-recommends --allow-unauthenticated \
         supervisor \
