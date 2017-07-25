@@ -16,14 +16,14 @@ RUN echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted
     && echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security multiverse' >> /etc/apt/sources.list \
 
 # built-in packages
+   # && dpkg --add-architecture i386 \
+   # && curl -SL https://dl.winehq.org/wine-builds/Release.key | apt-key add - \
+   # && apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/ \
 RUN apt-get update \
     && apt-get install -y --no-install-recommends software-properties-common curl\
     && sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' >> /etc/apt/sources.list.d/arc-theme.list" \
     && curl -SL http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key | apt-key add - \
     && add-apt-repository ppa:fcwu-tw/ppa \
-    && dpkg --add-architecture i386 \
-    && curl -SL https://dl.winehq.org/wine-builds/Release.key | apt-key add - \
-    && apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/ \
     && apt-get update \
     && apt-get install -y --no-install-recommends --allow-unauthenticated \
         supervisor \
