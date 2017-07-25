@@ -3,14 +3,27 @@ MAINTAINER Doro Wu <fcwu.tw@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN sed -i 's#http://archive.ubuntu.com/#http://tw.archive.ubuntu.com/#' /etc/apt/sources.list
+# RUN sed -i 's#http://archive.ubuntu.com/#http://tw.archive.ubuntu.com/#' /etc/apt/sources.list
+RUN echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted' > /etc/apt/sources.list \
+    && echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial universe' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates universe' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial multiverse' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates multiverse' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security universe' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security multiverse' >> /etc/apt/sources.list \
 
 # built-in packages
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends software-properties-common curl \
+    && apt-get install -y --no-install-recommends software-properties-common curl\
     && sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' >> /etc/apt/sources.list.d/arc-theme.list" \
     && curl -SL http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key | apt-key add - \
     && add-apt-repository ppa:fcwu-tw/ppa \
+    && dpkg --add-architecture i386 \
+    && curl -SL https://dl.winehq.org/wine-builds/Release.key | apt-key add - \
+    && apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
     && apt-get update \
     && apt-get install -y --no-install-recommends --allow-unauthenticated \
         supervisor \
