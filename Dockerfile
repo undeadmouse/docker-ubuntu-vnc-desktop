@@ -3,8 +3,8 @@ MAINTAINER Doro Wu <fcwu.tw@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# RUN sed -i 's#http://archive.ubuntu.com/#http://tw.archive.ubuntu.com/#' /etc/apt/sources.list
-RUN echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted' > /etc/apt/sources.list \
+RUN sed -i 's#http://archive.ubuntu.com/#http://tw.archive.ubuntu.com/#' /etc/apt/sources.list
+RUN echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted' >> /etc/apt/sources.list \
     && echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted' >> /etc/apt/sources.list \
     && echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial universe' >> /etc/apt/sources.list \
     && echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates universe' >> /etc/apt/sources.list \
